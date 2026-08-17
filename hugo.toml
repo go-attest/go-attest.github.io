@@ -1,0 +1,32 @@
+baseURL = "https://go-attest.github.io/"
+title = "go-attest"
+disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+[params]
+  subtitle = "signing and SBOMs for build artifacts, in pure Go"
+  description = "Pure-Go supply-chain attestation for build artifacts: Ed25519 signing interoperable with both common encodings (sign) and SPDX 2.3 / CycloneDX 1.5 software bills of materials whose conformance is proven against the reference libraries (sbom)."
+  tagline = "Supply-chain attestation for build artifacts — <strong>sign</strong> what you ship and <strong>say what is in it</strong>, from pure Go."
+  pills = ["Ed25519", "SPDX 2.3", "CycloneDX 1.5", "CGO_ENABLED=0", "BSD-3-Clause"]
+  primary_role = "signing"
+  leads = [
+    "An artifact needs two things said about it: <strong>who vouches for it</strong> and <strong>what is inside it</strong>. These two packages do one each, over the same bytes, so a release pipeline can emit both without a second toolchain.",
+    "Conformance is not asserted, it is <strong>decoded</strong>: the SBOM output is parsed back by the reference SPDX and CycloneDX libraries in test-only code, so a document that those tools would reject cannot pass CI here."
+  ]
+  principles = "Both packages are ordinary Go libraries with no cgo and no external binaries, so they drop into a build pipeline that already produces the artifact — no separate signing daemon, no Node, no Python."
+
+[[params.repos]]
+  name = "sign"
+  role = "signing"
+  reach = "Ed25519 over the artifact bytes"
+  gomod = true
+  result = "Ed25519 signing that is <strong>interoperable with both</strong> encodings an artifact is distributed under. A plain signature over the same bytes either way, so one keypair covers both channels rather than forcing a choice between them."
+[[params.repos]]
+  name = "sbom"
+  role = "inventory"
+  reach = "SPDX 2.3 JSON + CycloneDX 1.5 JSON"
+  gomod = true
+  result = "Emits a software bill of materials for a build artifact <strong>and its dependency closure</strong>, in both formats."
+  note = "Conformance is proven in test-only code by decoding the output with the reference libraries — the documents are checked by the tools that consume them, not by our own reader."
