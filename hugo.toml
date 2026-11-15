@@ -13,7 +13,7 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
 [params]
   subtitle = "signing and SBOMs for build artifacts, in pure Go"
   description = "Pure-Go supply-chain attestation for build artifacts: Ed25519 signing interoperable with both common encodings (sign) and SPDX 2.3 / CycloneDX 1.5 software bills of materials whose conformance is proven against the reference libraries (sbom)."
-  tagline = "Supply-chain attestation for build artifacts — <strong>sign</strong> what you ship and <strong>say what is in it</strong>, from pure Go."
+  tagline = "Supply-chain attestation for build artifacts — <strong>sign</strong> what you ship and <strong>say what is in it</strong>."
   pills = ["Ed25519", "SPDX 2.3", "CycloneDX 1.5", "CGO_ENABLED=0", "BSD-3-Clause"]
   primary_role = "signing"
   leads = [
@@ -56,3 +56,13 @@ disableKinds = ["taxonomy", "term", "RSS", "sitemap", "404"]
   chipFgDark = "#85e3ef"
   statsEnd = "#caf3f8"
   bandText = "#dcf7fa"
+
+# The hero's buttons, rendered by landingkit's cta.html in the kit's order.
+[[params.cta]]
+  kind  = "docs"
+  href  = "https://github.com/go-attest"
+  label = "GitHub"
+
+# The architectures the tests RUN on, read from the library's CI.
+[params.mantra]
+  goarch = ["amd64"]
